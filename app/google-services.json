@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1039336731841",
+    "firebase_url": "https://jack-danials.firebaseio.com",
+    "project_id": "jack-danials",
+    "storage_bucket": "jack-danials.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039336731841:android:71a1492080463ab5",
+        "android_client_info": {
+          "package_name": "com.sample.jackdaniels"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039336731841-ubimn91nusond0485qvkp6n7mt98ace5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sample.jackdaniels",
+            "certificate_hash": "08aa854ba2703135a2081dcbce7e82849482b821"
+          }
+        },
+        {
+          "client_id": "1039336731841-1g5bdb3bonaaog86j59ngisqbsslqvd6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrf_bWFYzr-yXKDOAXg2aHSjWixGJ8kBs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039336731841-1g5bdb3bonaaog86j59ngisqbsslqvd6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
