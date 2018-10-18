@@ -37,11 +37,11 @@ public class VerifyLoginActivity extends AppCompatActivity {
 
     //firebase auth object
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_login);
-
 
 
         FirebaseApp.initializeApp(this);
@@ -159,11 +159,10 @@ public class VerifyLoginActivity extends AppCompatActivity {
                 });
 
 
-
     }
 
 
-    public void setProgressBar(){
+    public void setProgressBar() {
         mProgressBar = new ProgressDialog(this);
         mProgressBar.setProgress(0);   // Main Progress
         mProgressBar.setSecondaryProgress(100); // Secondary Progress

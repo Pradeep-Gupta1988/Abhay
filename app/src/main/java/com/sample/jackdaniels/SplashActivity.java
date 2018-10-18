@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
+import com.sample.jackdaniels.authentication.LoginActivity;
 import com.sample.jackdaniels.base.BaseActivity;
 import com.sample.jackdaniels.products.ProductListActivity;
 

@@ -15,4 +15,8 @@
     </string>
     <string name="fetching_records">Fetching products...</string>
     <string name="saving_product">Saving product...</string>
+    <string name="let_s_get_started">LET\'S GET STARTED!</string>
+    <string name="once_you_go_jack_nyou_never_go_back">Once you go Jack,\nYou Never Go Back.</string>
+    <string name="verification_code">VERIFICATION CODE</string>
+    <string name="start_driving">Start Driving</string>
 </resources>

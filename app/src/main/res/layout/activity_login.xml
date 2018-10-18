@@ -1,31 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/common_padding"
     tools:context=".products.ProductListActivity">
 
-    <EditText
-        android:id="@+id/edit_mobile_no"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter Mobile Number"
-        android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.253" />
+        android:layout_gravity="center"
+        android:src="@drawable/allbottles" />
 
-    <Button
-        android:id="@+id/btn_submit"
+    <com.design.jackdaniels.JDTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/let_s_get_started"
+        android:textColor="@color/colorWhiteLight"
+        android:textSize="22sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/common_padding"
+        android:layout_marginTop="@dimen/common_padding"
+        android:layout_marginRight="@dimen/common_padding"
+        android:background="#C0C0C0" />
+
+    <com.design.jackdaniels.JDTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/common_padding"
+        android:padding="4dp"
+        android:text="MOBILE NUMBER"
+        android:textColor="#C0C0C0"
+        android:textSize="16sp" />
+
+    <com.design.jackdaniels.JDEditText
+        android:id="@+id/edit_mobile_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_marginLeft="@dimen/common_padding"
+        android:layout_marginTop="@dimen/common_padding"
+        android:layout_marginRight="@dimen/common_padding"
+        android:background="@drawable/edit_text_bg"
+        android:inputType="phone"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingTop="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="12dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp" />
 
-</android.support.constraint.ConstraintLayout>
+    <com.design.jackdaniels.JDTextView
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/common_padding"
+        android:text="VERIFY"
+        android:textColor="#F4BB26"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</LinearLayout>
