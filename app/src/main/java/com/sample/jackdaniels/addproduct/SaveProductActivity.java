@@ -49,7 +49,7 @@ public class SaveProductActivity extends BaseActivity implements SaveProductCont
 
     @Override
     public void showProgress(String message) {
-        showProgress(message);
+        showProgressDialog(message);
     }
 
     @Override
