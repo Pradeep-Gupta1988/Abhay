@@ -1,4 +1,4 @@
-package com.sample.jackdaniels.products.data.model;
+package com.sample.jackdaniels.data.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

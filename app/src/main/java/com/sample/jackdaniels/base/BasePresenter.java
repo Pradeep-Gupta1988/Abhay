@@ -1,4 +1,5 @@
 package com.sample.jackdaniels.base;
 
-public class BasePresenter {
+public interface BasePresenter {
+    void onStart();
 }

@@ -1,13 +1,19 @@
 package com.sample.jackdaniels.util;
 
-public class NativeResoureManager {
+import android.content.res.Resources;
 
-    public NativeResoureManager(){
+public class NativeResourceManager {
+    private Resources resources;
 
+    public NativeResourceManager(Resources resources) {
+        this.resources = resources;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public String getString(int string) {
+        return resources.getString(string);
+    }
+
+    public int getColor(int color) {
+        return resources.getColor(color);
     }
 }

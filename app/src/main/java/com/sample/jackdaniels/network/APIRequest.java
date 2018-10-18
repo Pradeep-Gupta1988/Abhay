@@ -1,4 +1,4 @@
-package com.poc.firbaseretrofit;
+package com.sample.jackdaniels.network;
 
 
 import java.util.concurrent.TimeUnit;
@@ -8,19 +8,16 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by admin on 14-02-2018.
- */
 
-public class NetworkService {
+public class APIRequest {
     public static final long CONNECTION_TIME_OUT = 60;
     public static final long READ_TIME_OUT = 60;
     public static final long WRITE_TIME_OUT = 60;
-    private static volatile NetworkService instance = null;
-    private HttpLoggingInterceptor logging = null;
-    private OkHttpClient okHttpClient = null;
+    private static volatile APIRequest instance = null;
+    private HttpLoggingInterceptor logging;
+    private OkHttpClient okHttpClient;
 
-    private NetworkService() {
+    private APIRequest() {
         logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         okHttpClient = new OkHttpClient().newBuilder().addInterceptor(logging)
@@ -30,21 +27,21 @@ public class NetworkService {
                 .build();
     }
 
-    public static NetworkService getInstance() {
+    public static APIRequest getInstance() {
         if (instance == null) {
-            synchronized (NetworkService.class) {
+            synchronized (APIRequest.class) {
                 if (instance == null)
-                    instance = new NetworkService();
+                    instance = new APIRequest();
             }
         }
         return instance;
     }
 
-    public APIs getProvider() {
-        APIs apis = new Retrofit.Builder()
-                .baseUrl(URLs.BASE_URL)
+    public API getProvider() {
+        API apis = new Retrofit.Builder()
+                .baseUrl(URLS.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create()).client(okHttpClient)
-                .build().create(APIs.class);
+                .build().create(API.class);
         return apis;
     }
 }

@@ -1,8 +1,4 @@
-package com.sample.jackdaniels.products.data.source;
-
-import com.sample.jackdaniels.products.data.model.ProductsWrapper;
-
-import java.util.Map;
+package com.sample.jackdaniels.data.source.productlist;
 
 public class ProductListRepository implements ProductListDataSource {
     private static ProductListRepository instance = null;

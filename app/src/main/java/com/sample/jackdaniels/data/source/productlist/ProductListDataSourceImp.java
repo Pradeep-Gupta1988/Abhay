@@ -1,11 +1,10 @@
-package com.sample.jackdaniels.products.data.source;
+package com.sample.jackdaniels.data.source.productlist;
 
 
 import com.sample.jackdaniels.network.APIRequest;
-import com.sample.jackdaniels.products.data.model.ProductsWrapper;
+import com.sample.jackdaniels.data.model.ProductsWrapper;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProductListDataSourceImp implements ProductListDataSource {

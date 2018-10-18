@@ -1,8 +1,4 @@
-package com.sample.jackdaniels.products.data.source;
-
-import com.sample.jackdaniels.products.data.model.ProductsWrapper;
-
-import java.util.Map;
+package com.sample.jackdaniels.data.source.productlist;
 
 public interface ProductListDataSource {
     interface Callback<T> {

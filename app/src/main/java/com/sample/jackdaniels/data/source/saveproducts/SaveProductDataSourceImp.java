@@ -1,25 +1,29 @@
-package com.sample.jackdaniels.data.source.productlist;
+package com.sample.jackdaniels.data.source.saveproducts;
 
 
-import com.sample.jackdaniels.network.APIRequest;
+import com.sample.jackdaniels.data.model.Product;
 import com.sample.jackdaniels.data.model.ProductsWrapper;
+import com.sample.jackdaniels.network.APIRequest;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProductListDataSourceImp implements ProductListDataSource {
-
+public class SaveProductDataSourceImp implements SaveProductDataSource {
 
     @Override
-    public void getProducts(final Callback callback) {
-        APIRequest.getInstance().getProvider().getData().enqueue(new retrofit2.Callback<ProductsWrapper>() {
+    public void saveProduct(Product product, final Callback callback) {
+        APIRequest.getInstance().getProvider().addProduct(ID, product).enqueue(new retrofit2.Callback<Product>() {
             @Override
-            public void onResponse(Call<ProductsWrapper> call, Response<ProductsWrapper> response) {
+            public void onResponse(Call<Product> call, Response<Product> response) {
+                System.out.println("Success");
                 callback.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(Call<ProductsWrapper> call, Throwable t) {
+            public void onFailure(Call<Product> call, Throwable t) {
+                System.out.println("On Error");
+
                 callback.onError();
             }
         });

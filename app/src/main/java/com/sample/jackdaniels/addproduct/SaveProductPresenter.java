@@ -1,45 +1,56 @@
-package com.sample.jackdaniels.products;
+package com.sample.jackdaniels.addproduct;
 
+import android.text.TextUtils;
+
+import com.sample.jackdaniels.R;
 import com.sample.jackdaniels.data.model.Product;
 import com.sample.jackdaniels.data.model.ProductsWrapper;
 import com.sample.jackdaniels.data.source.productlist.ProductListDataSource;
 import com.sample.jackdaniels.data.source.productlist.ProductListRepository;
+import com.sample.jackdaniels.data.source.saveproducts.SaveProductDataSource;
+import com.sample.jackdaniels.data.source.saveproducts.SaveProductRepository;
+import com.sample.jackdaniels.util.NativeResourceManager;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ProductListPresenter implements ProductListContract.Presenter {
-    private ProductListContract.View view;
-    private ProductListRepository repository;
+public class SaveProductPresenter implements SaveProductContract.Presenter {
+    private SaveProductContract.View view;
+    private SaveProductRepository repository;
+    private NativeResourceManager nativeResourceManager;
 
-    ProductListPresenter(ProductListContract.View view, ProductListRepository repository) {
+    SaveProductPresenter(SaveProductContract.View view,
+                         SaveProductRepository repository,
+                         NativeResourceManager nativeResourceManager) {
         this.view = view;
         this.repository = repository;
+        this.nativeResourceManager = nativeResourceManager;
         view.setPresenter(this);
     }
 
 
     @Override
     public void onStart() {
-        getProducts();
+        // TODO
     }
 
-    @Override
-    public void getProducts() {
-        repository.getProducts(new ProductListDataSource.Callback<ProductsWrapper>() {
 
+    @Override
+    public void addProduct(final Product product) {
+        view.showProgress(nativeResourceManager.getString(R.string.saving_product));
+        repository.saveProduct(product, new SaveProductDataSource.Callback<Product>() {
             @Override
-            public void onSuccess(ProductsWrapper result) {
-                Map<String, Product> userMap = result.getProductMap();
-                List<Product> list = new ArrayList<>();
-                for (Map.Entry<String, Product> entry : userMap.entrySet())
-                    list.add(entry.getValue());
-                view.getProducts(list);
+            public void onSuccess(Product result) {
+                view.dismissProgress();
+                if (!TextUtils.isEmpty(result.getName()))
+                    view.onProductAddSuccessfully(product);
+                view.finishActivity();
             }
 
             @Override
             public void onError() {
+                view.dismissProgress();
                 view.onError();
             }
         });

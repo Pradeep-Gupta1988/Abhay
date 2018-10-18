@@ -1,6 +1,7 @@
-package com.poc.firbaseretrofit;
+package com.sample.jackdaniels.network;
 
-import java.util.List;
+import com.sample.jackdaniels.data.model.Product;
+import com.sample.jackdaniels.data.model.ProductsWrapper;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -8,12 +9,12 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
-public interface APIs {
+public interface API {
 
-    @POST(URLs.ADD_USER)
-    Call<User> addUser(@Path("new") String s1, @Body User loginRequest);
+    @POST(URLS.ADD_PRODUCT)
+    Call<Product> addProduct(@Path("new") String path, @Body Product loginRequest);
 
-    @GET(URLs.GET_USERS)
-    Call<DynamicUser> getData();
+    @GET(URLS.GET_PRODUCTS)
+    Call<ProductsWrapper> getData();
 
 }

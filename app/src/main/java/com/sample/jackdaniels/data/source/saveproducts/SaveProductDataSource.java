@@ -1,17 +1,14 @@
-package com.sample.jackdaniels.data.source.saveproducts
+package com.sample.jackdaniels.data.source.saveproducts;
 
-import com.sample.jackdaniels.data.model.Product
+import com.sample.jackdaniels.data.model.Product;
 
-interface SaveProductDataSource {
+public interface SaveProductDataSource {
+    String ID="";
     interface Callback<T> {
-        fun onSuccess(result: T)
+        void onSuccess(T result);
 
-        fun onError()
+        void onError();
     }
 
-    fun saveProduct(product: Product, callback: Callback<*>)
-
-    companion object {
-        val ID = ""
-    }
+    void saveProduct(Product product, Callback callback);
 }

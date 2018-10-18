@@ -3,12 +3,10 @@ package com.sample.jackdaniels.authentication;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.sample.jackdaniels.MainActivity;
+import com.sample.jackdaniels.products.ProductListActivity;
 import com.sample.jackdaniels.R;
 
 import java.util.concurrent.TimeUnit;
@@ -141,7 +139,7 @@ public class VerifyLoginActivity extends AppCompatActivity {
                             mProgressBar.setProgress(100);
                             mProgressBar.dismiss();
                             //verification successful we will start the profile activity
-                            Intent intent = new Intent(VerifyLoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(VerifyLoginActivity.this, ProductListActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 

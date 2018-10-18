@@ -1,18 +1,26 @@
-package com.sample.jackdaniels.addproduct
+package com.sample.jackdaniels.addproduct;
 
-import com.sample.jackdaniels.base.BasePresenter
-import com.sample.jackdaniels.base.BaseView
-import com.sample.jackdaniels.data.model.Product
+import com.sample.jackdaniels.base.BasePresenter;
+import com.sample.jackdaniels.base.BaseView;
+import com.sample.jackdaniels.data.model.Product;
 
-interface SaveProductContract {
+import java.util.List;
 
-    interface View : BaseView<Presenter> {
-        fun onProductAddSuccessfully(list: List<Product>)
+public interface SaveProductContract {
 
-        fun onError()
+    interface View extends BaseView<Presenter> {
+        void showProgress(String message);
+
+        void dismissProgress();
+
+        void onProductAddSuccessfully(Product product);
+
+        void finishActivity();
+
+        void onError();
     }
 
-    interface Presenter : BasePresenter {
-        fun addProduct(product: Product)
+    interface Presenter extends BasePresenter {
+        void addProduct(Product product);
     }
 }

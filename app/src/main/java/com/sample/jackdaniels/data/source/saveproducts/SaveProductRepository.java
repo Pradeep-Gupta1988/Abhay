@@ -1,23 +1,25 @@
-package com.sample.jackdaniels.data.source.productlist;
+package com.sample.jackdaniels.data.source.saveproducts;
 
-public class ProductListRepository implements ProductListDataSource {
-    private static ProductListRepository instance = null;
-    private ProductListDataSource dataSource;
+import com.sample.jackdaniels.data.model.Product;
 
-    private ProductListRepository() {
-        dataSource = new ProductListDataSourceImp();
+public class SaveProductRepository implements SaveProductDataSource {
+    private static SaveProductRepository instance = null;
+    private SaveProductDataSource dataSource;
+
+    private SaveProductRepository() {
+        dataSource = new SaveProductDataSourceImp();
 
     }
 
-    public static synchronized ProductListRepository getInstance() {
+    public static synchronized SaveProductRepository getInstance() {
         if (instance == null)
-            instance = new ProductListRepository();
+            instance = new SaveProductRepository();
         return instance;
     }
 
 
     @Override
-    public void getProducts(Callback callback) {
-        dataSource.getProducts(callback);
+    public void saveProduct(Product product, Callback callback) {
+        dataSource.saveProduct(product, callback);
     }
 }
