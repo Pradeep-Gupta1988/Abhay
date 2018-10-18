@@ -1,6 +1,9 @@
 package com.sample.jackdaniels.products;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,16 +18,18 @@ import java.util.List;
 
 public class ProductListActivity extends BaseActivity implements ProductListContract.View {
     private ProductListContract.Presenter presenter;
-    private Button button;
+    private FloatingActionButton fabAdd;
+    private RecyclerView rvProductList;
 
     @Override
     protected int bindLayout() {
-        return R.layout.activity_main;
+        return R.layout.activity_product_list;
     }
 
     @Override
     protected void initViews() {
-        button = findViewById(R.id.button);
+        fabAdd = findViewById(R.id.fabAdd);
+        rvProductList = findViewById(R.id.rvProductList);
     }
 
     @Override
@@ -35,7 +40,7 @@ public class ProductListActivity extends BaseActivity implements ProductListCont
                 new NativeResourceManager(getResources()),
                 new AppNavigator(this)).onStart();
 
-        button.setOnClickListener(new View.OnClickListener() {
+        fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.onClick();
@@ -61,7 +66,9 @@ public class ProductListActivity extends BaseActivity implements ProductListCont
 
     @Override
     public void getProducts(List<Product> list) {
-        System.out.println("List is "+list.size());
+        rvProductList.setLayoutManager(new LinearLayoutManager(this));
+        rvProductList.setAdapter(new ProductListAdapter(this, list));
+        System.out.println("List is " + list.size());
     }
 
     @Override

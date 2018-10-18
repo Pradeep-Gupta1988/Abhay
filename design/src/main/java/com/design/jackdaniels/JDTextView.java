@@ -40,8 +40,13 @@ public class JDTextView extends AppCompatTextView {
                 if (fontName != null) {
                     Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/" + fontName);
                     setTypeface(myTypeface);
+                }else {
+                    Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Niramit-Regular.ttf" );
+                    setTypeface(myTypeface);
                 }
             } catch (Exception e) {
+                Typeface myTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/Niramit-Regular.ttf" );
+                setTypeface(myTypeface);
                 e.printStackTrace();
             }
 

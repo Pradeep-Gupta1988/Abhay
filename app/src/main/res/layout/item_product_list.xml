@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imgWhisky"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.design.jackdaniels.JDTextView
+            android:id="@+id/txtProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="106dp"
+            android:text="JD No. 7"
+            app:layout_constraintEnd_toStartOf="@+id/ratingBar"
+            app:layout_constraintStart_toEndOf="@+id/imgWhisky"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.design.jackdaniels.JDTextView
+            android:id="@+id/JDTextView2"
+            android:layout_width="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="this is Product Description this could be a multiline text"
+            app:layout_constraintStart_toStartOf="@+id/txtProductName"
+            app:layout_constraintTop_toBottomOf="@+id/txtProductName" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtProductName"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
