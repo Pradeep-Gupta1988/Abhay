@@ -19,12 +19,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.sample.jackdaniels.base.BaseActivity;
+import com.sample.jackdaniels.navigator.AppNavigator;
 import com.sample.jackdaniels.products.ProductListActivity;
 import com.sample.jackdaniels.R;
+import com.sample.jackdaniels.util.NativeResourceManager;
 
 import java.util.concurrent.TimeUnit;
 
-public class VerifyLoginActivity extends AppCompatActivity {
+public class VerifyLoginActivity extends BaseActivity implements VerifyLoginContract.VerifyLoginView{
+
+    private VerifyLoginContract.VerifyLoginPresenter presenter;
 
     //These are the objects needed
     //It is the verification id that will be sent to the user
@@ -38,23 +43,29 @@ public class VerifyLoginActivity extends AppCompatActivity {
     //firebase auth object
     private FirebaseAuth mAuth;
 
+
+    @Override
+    protected int bindLayout() {
+        return R.layout.activity_verify_login;
+    }
+
+    @Override
+    protected void initViews() {
+        editTextCode = findViewById(R.id.edit_verification_no);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_verify_login);
+
+        new VerifyLoginPresenter(this, getIntent().getStringExtra("mobile"),new AppNavigator(this),new NativeResourceManager(getResources()));
 
 
-        FirebaseApp.initializeApp(this);
-        //initializing objects
-        mAuth = FirebaseAuth.getInstance();
-        editTextCode = findViewById(R.id.edit_verification_no);
-
-
-        //getting mobile number from the previous activity
+       /* //getting mobile number from the previous activity
         //and sending the verification code to the number
         Intent intent = getIntent();
         String mobile = intent.getStringExtra("mobile");
-        sendVerificationCode(mobile);
+        sendVerificationCode(mobile);*/
 
 
         //if the automatic sms detection did not work, user can also enter the code manually
@@ -62,18 +73,20 @@ public class VerifyLoginActivity extends AppCompatActivity {
         findViewById(R.id.btn_signin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String code = editTextCode.getText().toString().trim();
+                presenter.onClick();
+                /*String code = editTextCode.getText().toString().trim();
                 if (code.isEmpty() || code.length() < 6) {
                     editTextCode.setError("Enter valid code");
                     editTextCode.requestFocus();
                     return;
                 }
-                setProgressBar();
                 //verifying the code entered manually
-                verifyVerificationCode(code);
+                verifyVerificationCode(code);*/
             }
         });
     }
+
+
 
     //the method is sending verification code
     //the country id is concatenated
@@ -130,21 +143,22 @@ public class VerifyLoginActivity extends AppCompatActivity {
         signInWithPhoneAuthCredential(credential);
     }
 
-    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+    @Override
+    public void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(VerifyLoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            mProgressBar.setProgress(100);
-                            mProgressBar.dismiss();
+                            dismissProgress();
                             //verification successful we will start the profile activity
                             Intent intent = new Intent(VerifyLoginActivity.this, ProductListActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
+
                         } else {
-                            mProgressBar.dismiss();
+                            dismissProgress();
                             //verification unsuccessful.. display an error message
 
                             String message = "Somthing is wrong, we will fix it soon...";
@@ -159,14 +173,59 @@ public class VerifyLoginActivity extends AppCompatActivity {
                 });
 
 
+
     }
 
-
-    public void setProgressBar() {
-        mProgressBar = new ProgressDialog(this);
-        mProgressBar.setProgress(0);   // Main Progress
-        mProgressBar.setSecondaryProgress(100); // Secondary Progress
-        mProgressBar.setMax(100);
+    @Override
+    public void showProgress(String message) {
+        showProgressDialog(message);
     }
 
+    @Override
+    public void dismissProgress() {
+        dismissDialog();
+    }
+
+    @Override
+    public void initFireBaseAuth() {
+        FirebaseApp.initializeApp(this);
+        //initializing objects
+        mAuth = FirebaseAuth.getInstance();
+    }
+
+    @Override
+    public void setCode(String code) {
+        editTextCode.setText(code);
+    }
+
+    @Override
+    public void setVerificationId(String id) {
+        mVerificationId = id;
+    }
+
+    @Override
+    public String getVerificationId() {
+        return mVerificationId;
+    }
+
+    @Override
+    public FirebaseAuth getFirebaseAuth() {
+        return mAuth;
+    }
+
+    @Override
+    public String getCode() {
+        return editTextCode.getText().toString().trim();
+    }
+
+    @Override
+    public void setErrorMessage() {
+        editTextCode.setError("Enter valid code");
+        editTextCode.requestFocus();
+    }
+
+    @Override
+    public void setPresenter(VerifyLoginContract.VerifyLoginPresenter presenter) {
+        this.presenter = presenter;
+    }
 }

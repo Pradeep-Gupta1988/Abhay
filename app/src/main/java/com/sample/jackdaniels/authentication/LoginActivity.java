@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity  {
                 String mobile = editTextMobile.getText().toString().trim();
 
                 if(mobile.isEmpty() || mobile.length() < 10){
-                    editTextMobile.setError("Enter a valid mobile");
+                    editTextMobile.setError("Enter a valid mobile number");
                     editTextMobile.requestFocus();
                     return;
                 }

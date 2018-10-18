@@ -12,9 +12,6 @@ import com.sample.jackdaniels.data.source.saveproducts.SaveProductRepository;
 import com.sample.jackdaniels.network.APIRequest;
 import com.sample.jackdaniels.util.NativeResourceManager;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SaveProductActivity extends BaseActivity implements SaveProductContract.View {
     private SaveProductContract.Presenter presenter;

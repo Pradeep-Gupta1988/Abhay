@@ -23,7 +23,7 @@ public class Navigator implements BaseNavigator {
     }
 
     protected void startActivity(Class<?> destination) {
-        context.startActivity(new Intent(context, destination));
+        context.startActivity(new Intent(context, destination).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
     }
 
     protected void startActivity(Class<?> destination, Serializable serializable) {
@@ -31,5 +31,7 @@ public class Navigator implements BaseNavigator {
         intent.putExtra(SERIALIZE_OBJ, serializable);
         context.startActivity(intent);
     }
+
+
 
 }
