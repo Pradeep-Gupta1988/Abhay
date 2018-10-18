@@ -41,8 +41,8 @@ public class VerifyLoginPresenter implements VerifyLoginContract.VerifyLoginPres
 
     @Override
     public void onStart() {
-        view.initFireBaseAuth();
-        sendVerificationCode(mobileNumber);
+       /* view.initFireBaseAuth();
+        sendVerificationCode(mobileNumber);*/
 
     }
 
@@ -107,12 +107,12 @@ public class VerifyLoginPresenter implements VerifyLoginContract.VerifyLoginPres
 
     @Override
     public void onClick() {
-        view.showProgress("Verifying OTP");
         String code = view.getCode();
         if (code.isEmpty() || code.length() < 6) {
             view.setErrorMessage();
             return;
         }
+        view.showProgress("Verifying OTP");
         //verifying the code entered manually
         verifyVerificationCode(code);
     }
